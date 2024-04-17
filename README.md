@@ -56,26 +56,6 @@ docker build .
 
 If you wish to run *IDPG* instead of *DDPG*, You can swap the [`CMD`](Dockerfile#L11) commands in the Docker file.
 
-## Motion Deblur
-
-For motion deblur we used the following git repository to generate the
-kernels: https://github.com/LeviBorodenko/motionblur.
-
-Clone that repository and copy the *motionblur.py* file into `DDPG/functions`.
-
-As mentioned in the paper, we used motion deblur kernels with `intensity=0.5`.
-
-## Datasets
-
-The datasets used in the paper are CelebA-HQ and ImageNet. Both can be found in: 
-[[Google drive](https://drive.google.com/drive/folders/1cSCTaBtnL7OIKXT4SVME88Vtk4uDd_u4?usp=sharing)] [[Baidu drive](https://pan.baidu.com/s/1tQaWBqIhE671v3rrB-Z2mQ?pwd=twq0)].
-
-After you download the datasets, place each dataset in the relevant directory:
-
-1. CelebA-HQ - Place the dataset in `DDPG/exp/datasets/celeba/`.
-2. ImageNet -  Place the dataset in `DDPG/exp/datasets/imagenet/`.
-   1. Download the file `imagenet_val_1k.txt` from the links above as well, and place it in `DDPG/exp`. Rename this file to `imagenet_val.txt` in order for the code to use it.
-
 ## Pre-Trained Models
 
 To download the models used in the paper:
@@ -90,6 +70,44 @@ Download it and place it in `DDPG/exp/logs/celeba/`.
 The ImageNet model checkpoint can be
 found [here](https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt).
 Download it and place it in `DDPG/exp/logs/imagenet/`.
+
+## Quick Start
+Run the following commands to get immediate DDPG results:
+
+1. CelebA noiseless SRx4:
+    ```bash
+    python main.py --config celeba_hq.yml --path_y celeba_hq --deg sr_bicubic --sigma_y 0 \
+    -i DDPG_celeba_sr_bicubic_sigma_y_0 --inject_noise 1 --zeta 0.7 --step_size_mode 0 \
+    --deg_scale 4 --operator_imp SVD
+    ```
+
+2. CelebA Gaussian deblurring with sigma_y=0.05:
+    ```bash
+    python main.py --config celeba_hq.yml --path_y celeba_hq --deg deblur_gauss --sigma_y 0 \
+    -i DDPG_celeba_deblur_gauss_sigma_y_0 --inject_noise 1 --zeta 1.0 --step_size_mode 0 \
+    --operator_imp FFT
+    ```
+
+The results will be in `DDPG/exp/image_samples/`.
+## Full Datasets
+
+The datasets used in the paper are CelebA-HQ and ImageNet. Both can be found in: 
+[[Google drive](https://drive.google.com/drive/folders/1cSCTaBtnL7OIKXT4SVME88Vtk4uDd_u4?usp=sharing)] [[Baidu drive](https://pan.baidu.com/s/1tQaWBqIhE671v3rrB-Z2mQ?pwd=twq0)].
+
+After you download the datasets, place each dataset in the relevant directory:
+
+1. CelebA-HQ - Place the dataset in `DDPG/exp/datasets/celeba/`.
+2. ImageNet -  Place the dataset in `DDPG/exp/datasets/imagenet/`.
+   1. Download the file `imagenet_val_1k.txt` from the links above as well, and place it in `DDPG/exp`. Rename this file to `imagenet_val.txt` in order for the code to use it.
+
+## Motion Deblur
+
+For motion deblur we used the following git repository to generate the
+kernels: https://github.com/LeviBorodenko/motionblur.
+
+Clone that repository and copy the *motionblur.py* file into `DDPG/functions`.
+
+As mentioned in the paper, we used motion deblur kernels with `intensity=0.5`.
 
 ## Parameters
 
@@ -113,7 +131,6 @@ Where:
 - `gamma`: The Gamma hyperparameter used in the paper.
 - `zeta`: The Zeta hyperparameter used in the paper.
 - `eta_tilde`: The Eta hyperparameter used in the paper.
-    - Instead of `eta_tilde`, `xi` can be used, but `eta_tilde` must be set to negative number for `xi` to be noted.
 - `step_size_mode`: Which step size mode to use. In the paper, `step_size_mode=0` (fixed 1) was used for IDPG, noiseless DDPG and 
 DDPG with noise level `0.01`. `step_size_mode=1` (certain decay) was used for the rest of the DDPG runs.
 - `operator_implementation` - Whether to use `SVD` or `FFT`. Defaults to `FFT`.
@@ -142,6 +159,7 @@ Both scripts contain all tasks mentioned in the paper with the relevant configur
 ![Qualitative Results](figs/qualitative_results.png)
 
 Additional results can be found in the paper, including PSNR and LPIPS results compared to competitors.
+
 ## Citations
 If you used this repository in you research, please cite the paper:
 ```
