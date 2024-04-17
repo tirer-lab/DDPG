@@ -83,9 +83,9 @@ Run the following commands to get immediate DDPG results:
 
 2. CelebA Gaussian deblurring with sigma_y=0.05:
     ```bash
-    python main.py --config celeba_hq.yml --path_y celeba_hq --deg deblur_gauss --sigma_y 0 \
-    -i DDPG_celeba_deblur_gauss_sigma_y_0 --inject_noise 1 --zeta 1.0 --step_size_mode 0 \
-    --operator_imp FFT
+    python main.py --config celeba_hq.yml --path_y celeba_hq --deg deblur_gauss --sigma_y 0.05 \
+    -i DDPG_celeba_deblur_gauss_sigma_y_0.05 --inject_noise 1 --gamma 8 --zeta 0.5 --eta_tilde 0.7 \
+    --step_size_mode 1 --operator_imp FFT
     ```
 
 The results will be in `DDPG/exp/image_samples/`.
