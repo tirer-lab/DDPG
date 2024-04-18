@@ -163,10 +163,10 @@ Additional results can be found in the paper, including PSNR and LPIPS results c
 ## Citations
 If you used this repository in you research, please cite the paper:
 ```
-@article{tirer2023image,
+@inproceedings{garber2023image,
   title={Image Restoration by Denoising Diffusion Models with Iteratively Preconditioned Guidance},
   author={Garber, Tomer and Tirer, Tom},
-  journal={The Computer Vision and Pattern Recognition},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
   year={2024}
 }
 ```
