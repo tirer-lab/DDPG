@@ -17,6 +17,9 @@ Preconditioned Guidance* (***DDPG***).
 2. Gaussian Deblurring
 3. Motion Deblurring
 
+The code can be very easily adapted to super-resolution and deblurring with any kernel.  
+Extension to other linear measurement models is also possible.
+
 # Setup
 
 ## Installation
