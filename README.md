@@ -2,7 +2,7 @@
 
 ## 📖[**Paper**](https://arxiv.org/pdf/2312.16519.pdf) (CVPR 2024)
 
-Tomer Garber, [Tom Tirer](https://scholar.google.com/citations?user=_6bZV20AAAAJ)
+[Tomer Garber](https://scholar.google.com/citations?user=-ZciND8AAAAJ), [Tom Tirer](https://scholar.google.com/citations?user=_6bZV20AAAAJ)
 
 The Open University of Israel and Bar-Ilan University
 
