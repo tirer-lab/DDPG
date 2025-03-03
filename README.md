@@ -166,7 +166,7 @@ Both scripts contain all tasks mentioned in the paper with the relevant configur
 Additional results can be found in the paper, including PSNR and LPIPS results compared to competitors.
 
 ## Citations
-If you used this repository in you research, please cite the paper:
+If you used this repository in your research, please cite the paper:
 ```
 @inproceedings{garber2023image,
   title={Image Restoration by Denoising Diffusion Models with Iteratively Preconditioned Guidance},
